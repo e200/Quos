@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:quos/modules/music/model.dart';
-import 'package:quos/widgets/space.dart';
+import 'package:quos/pages/playlist/page.dart';
 
 import '../../theme.dart';
+import '../../widgets.dart';
 
 final _musics = [
   Music(
@@ -76,6 +77,13 @@ class HomePage extends StatelessWidget {
                         Icons.chevron_right,
                         color: Colors.grey,
                       ),
+                      onTap: () {
+                        Navigator.push(context, MaterialPageRoute(
+                          builder: (context) {
+                            return QuosPlaylistPage();
+                          },
+                        ));
+                      },
                     ),
                   ],
                   child: QuosMusicList(),
@@ -354,34 +362,6 @@ class QuosSection extends StatelessWidget {
             ),
           ),
         ],
-        child,
-      ],
-    );
-  }
-}
-
-class QuosBackground extends StatelessWidget {
-  final Widget child;
-
-  const QuosBackground({
-    Key? key,
-    required this.child,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          constraints: BoxConstraints.expand(),
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: appGradientColors,
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-            ),
-          ),
-        ),
         child,
       ],
     );
