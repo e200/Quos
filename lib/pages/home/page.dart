@@ -1,3 +1,25 @@
+final _musics = [
+  Music(
+    title: 'Malembe',
+    artist: 'Wilson Kentura',
+    art: 'assets/album0.jpg',
+  ),
+  Music(
+    title: 'Ingani',
+    artist: 'Afro Warrios & Wilson Kentura feat. Lizwi',
+    art: 'assets/album3.jpg',
+  ),
+  Music(
+    title: 'Haka',
+    artist: 'Wilson Kentura',
+    art: 'assets/album1.jpg',
+  ),
+  Music(
+    title: 'Babulla',
+    artist: 'Wilson Kentura',
+    art: 'assets/album2.jpg',
+  ),
+];
 
 class _HomePageTitle extends StatelessWidget {
   const _HomePageTitle({
