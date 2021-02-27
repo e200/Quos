@@ -1,4 +1,55 @@
 
+class _QuosMusicArt extends StatelessWidget {
+  const _QuosMusicArt({
+    Key? key,
+    required this.music,
+  }) : super(key: key);
+
+  final Music music;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(appBorderRadius),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(.2),
+            blurRadius: 5,
+            offset: Offset(0, 5),
+          ),
+        ],
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(appBorderRadius),
+        child: Stack(
+          children: [
+            Image.asset(
+              music.art,
+              fit: BoxFit.cover,
+            ),
+            Positioned.fill(
+              child: Center(
+                child: Container(
+                  padding: EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    color: Colors.black.withOpacity(.3),
+                    borderRadius: BorderRadius.circular(100),
+                  ),
+                  child: Icon(
+                    Icons.play_arrow,
+                    size: 14,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 class QuosSection extends StatelessWidget {
   final Widget? title;
   final List<Widget> actions;
