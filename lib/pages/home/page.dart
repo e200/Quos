@@ -1,4 +1,30 @@
 
+class QuosAction extends StatelessWidget {
+  final Widget icon;
+  final Widget title;
+  final Function()? onTap;
+
+  const QuosAction({
+    Key? key,
+    required this.icon,
+    required this.title,
+    this.onTap,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+      onPressed: onTap,
+      child: Row(
+        children: [
+          title,
+          icon,
+        ],
+      ),
+    );
+  }
+}
+
 class QuosMusicList extends StatelessWidget {
   const QuosMusicList({
     Key? key,
