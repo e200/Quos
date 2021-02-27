@@ -1,4 +1,31 @@
 
+class QuosMusicList extends StatelessWidget {
+  const QuosMusicList({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 167,
+      child: ListView.separated(
+        physics: BouncingScrollPhysics(),
+        scrollDirection: Axis.horizontal,
+        padding: const EdgeInsets.symmetric(horizontal: 15),
+        separatorBuilder: (context, index) {
+          return SpaceX(width: 15);
+        },
+        itemBuilder: (context, index) {
+          final _music = _musics[index];
+
+          return QuosMusicItem(music: _music);
+        },
+        itemCount: _musics.length,
+      ),
+    );
+  }
+}
+
 class QuosMusicItem extends StatelessWidget {
   final Music music;
 
