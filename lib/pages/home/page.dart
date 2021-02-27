@@ -1,4 +1,37 @@
 
+class _QuosMusicLabel extends StatelessWidget {
+  const _QuosMusicLabel({
+    Key? key,
+    required this.music,
+  }) : super(key: key);
+
+  final Music music;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          music.title,
+          overflow: TextOverflow.ellipsis,
+          style: TextStyle(
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        SpaceY(),
+        Text(
+          music.artist,
+          overflow: TextOverflow.ellipsis,
+          style: TextStyle(
+            color: mutedTextColor,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
 class _QuosMusicArt extends StatelessWidget {
   const _QuosMusicArt({
     Key? key,
