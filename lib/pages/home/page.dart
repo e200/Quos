@@ -1,4 +1,28 @@
 
+class QuosMusicItem extends StatelessWidget {
+  final Music music;
+
+  const QuosMusicItem({
+    Key? key,
+    required this.music,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: 120,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _QuosMusicArt(music: music),
+          SpaceY(height: 10),
+          _QuosMusicLabel(music: music),
+        ],
+      ),
+    );
+  }
+}
+
 class _QuosMusicLabel extends StatelessWidget {
   const _QuosMusicLabel({
     Key? key,
