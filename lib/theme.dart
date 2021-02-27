@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 final appGradientColors = [
@@ -12,5 +14,10 @@ ThemeData getTheme(BuildContext context) {
   return ThemeData.dark().copyWith(
     primaryColor: Colors.deepPurple,
     visualDensity: VisualDensity.adaptivePlatformDensity,
+    pageTransitionsTheme: PageTransitionsTheme(
+      builders: {
+        TargetPlatform.android: CupertinoPageTransitionsBuilder(),
+      }
+    ),
   );
 }
