@@ -1,4 +1,27 @@
 
+class _HomePageTitle extends StatelessWidget {
+  const _HomePageTitle({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Icon(Icons.graphic_eq),
+        SpaceX(width: 10),
+        Text(
+          'Quos Player',
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
 class QuosAction extends StatelessWidget {
   final Widget icon;
   final Widget title;
