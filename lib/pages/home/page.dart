@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quos/modules/music/model.dart';
+import 'package:quos/modules/now_playing/widget.dart';
 import 'package:quos/pages/playlist/page.dart';
 
 import '../../theme.dart';
@@ -31,117 +32,115 @@ final _musics = [
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: QuosBackground(
-          child: SafeArea(
-        child: NestedScrollView(
-          headerSliverBuilder: (context, innerBoxIsScrolled) {
-            return [
-              SliverAppBar(
-                backgroundColor: Colors.transparent,
-                floating: true,
-                elevation: 0,
-                title: _HomePageTitle(),
+    return QuosScaffold(
+      bottomNavigationBar: const QuosNowPlaying(),
+      body: NestedScrollView(
+        headerSliverBuilder: (context, innerBoxIsScrolled) {
+          return [
+            SliverAppBar(
+              backgroundColor: Colors.transparent,
+              floating: true,
+              elevation: 0,
+              title: const _HomePageTitle(),
+              actions: [
+                PopupMenuButton(
+                  icon: const Icon(Icons.more_vert),
+                  itemBuilder: (context) {
+                    return [
+                      const PopupMenuItem(
+                        child: Text('Settings'),
+                      ),
+                      const PopupMenuItem(
+                        child: Text('About'),
+                      ),
+                    ];
+                  },
+                ),
+              ],
+            ),
+          ];
+        },
+        body: SingleChildScrollView(
+          padding: const EdgeInsets.only(bottom: 30),
+          physics: const BouncingScrollPhysics(),
+          child: Wrap(
+            runSpacing: 30,
+            children: [
+              QuosSection(
+                title: const Text('Recently played'),
                 actions: [
-                  PopupMenuButton(
-                    icon: Icon(Icons.more_vert),
-                    itemBuilder: (context) {
-                      return [
-                        PopupMenuItem(
-                          child: Text('Settings'),
-                        ),
-                        PopupMenuItem(
-                          child: Text('About'),
-                        ),
-                      ];
+                  QuosAction(
+                    title: const Text(
+                      'More',
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                    icon: const Icon(
+                      Icons.chevron_right,
+                      color: Colors.grey,
+                    ),
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(
+                        builder: (context) {
+                          return const QuosPlaylistPage();
+                        },
+                      ));
                     },
                   ),
                 ],
+                child: const QuosMusicList(),
               ),
-            ];
-          },
-          body: SingleChildScrollView(
-            physics: BouncingScrollPhysics(),
-            child: Wrap(
-              runSpacing: 30,
-              children: [
-                QuosSection(
-                  title: Text('Recently played'),
-                  actions: [
-                    QuosAction(
-                      title: Text(
-                        'More',
-                        style: TextStyle(color: Colors.grey),
-                      ),
-                      icon: Icon(
-                        Icons.chevron_right,
-                        color: Colors.grey,
-                      ),
-                      onTap: () {
-                        Navigator.push(context, MaterialPageRoute(
-                          builder: (context) {
-                            return QuosPlaylistPage();
-                          },
-                        ));
-                      },
+              const QuosSection(
+                title: Text('Mostly played'),
+                actions: [
+                  QuosAction(
+                    title: Text(
+                      'More',
+                      style: TextStyle(color: Colors.grey),
                     ),
-                  ],
-                  child: QuosMusicList(),
-                ),
-                QuosSection(
-                  title: Text('Mostly played'),
-                  actions: [
-                    QuosAction(
-                      title: Text(
-                        'More',
-                        style: TextStyle(color: Colors.grey),
-                      ),
-                      icon: Icon(
-                        Icons.chevron_right,
-                        color: Colors.grey,
-                      ),
+                    icon: Icon(
+                      Icons.chevron_right,
+                      color: Colors.grey,
                     ),
-                  ],
-                  child: QuosMusicList(),
-                ),
-                QuosSection(
-                  title: Text('Albums'),
-                  actions: [
-                    QuosAction(
-                      title: Text(
-                        'More',
-                        style: TextStyle(color: Colors.grey),
-                      ),
-                      icon: Icon(
-                        Icons.chevron_right,
-                        color: Colors.grey,
-                      ),
+                  ),
+                ],
+                child: QuosMusicList(),
+              ),
+              const QuosSection(
+                title: Text('Albums'),
+                actions: [
+                  QuosAction(
+                    title: Text(
+                      'More',
+                      style: TextStyle(color: Colors.grey),
                     ),
-                  ],
-                  child: QuosMusicList(),
-                ),
-                QuosSection(
-                  title: Text('Genres'),
-                  actions: [
-                    QuosAction(
-                      title: Text(
-                        'More',
-                        style: TextStyle(color: Colors.grey),
-                      ),
-                      icon: Icon(
-                        Icons.chevron_right,
-                        color: Colors.grey,
-                      ),
+                    icon: Icon(
+                      Icons.chevron_right,
+                      color: Colors.grey,
                     ),
-                  ],
-                  child: QuosMusicList(),
-                ),
-                SpaceY(),
-              ],
-            ),
+                  ),
+                ],
+                child: QuosMusicList(),
+              ),
+              const QuosSection(
+                title: Text('Genres'),
+                actions: [
+                  QuosAction(
+                    title: Text(
+                      'More',
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                    icon: Icon(
+                      Icons.chevron_right,
+                      color: Colors.grey,
+                    ),
+                  ),
+                ],
+                child: QuosMusicList(),
+              ),
+            ],
           ),
         ),
-      )),
+      ),
     );
   }
 }
@@ -155,9 +154,9 @@ class _HomePageTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Icon(Icons.graphic_eq),
-        SpaceX(width: 10),
-        Text(
+        const Icon(Icons.graphic_eq),
+        const SpaceX(width: 10),
+        const Text(
           'Quos Player',
           style: TextStyle(
             fontSize: 20,
@@ -205,11 +204,11 @@ class QuosMusicList extends StatelessWidget {
     return SizedBox(
       height: 167,
       child: ListView.separated(
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         scrollDirection: Axis.horizontal,
         padding: const EdgeInsets.symmetric(horizontal: 15),
         separatorBuilder: (context, index) {
-          return SpaceX(width: 15);
+          return const SpaceX(width: 15);
         },
         itemBuilder: (context, index) {
           final _music = _musics[index];
@@ -237,8 +236,8 @@ class QuosMusicItem extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _QuosMusicArt(music: music),
-          SpaceY(height: 10),
+          QuosMusicArt(music: music),
+          const SpaceY(height: 10),
           _QuosMusicLabel(music: music),
         ],
       ),
@@ -262,70 +261,19 @@ class _QuosMusicLabel extends StatelessWidget {
         Text(
           music.title,
           overflow: TextOverflow.ellipsis,
-          style: TextStyle(
+          style: const TextStyle(
             fontWeight: FontWeight.w500,
           ),
         ),
-        SpaceY(),
+        const SpaceY(),
         Text(
           music.artist,
           overflow: TextOverflow.ellipsis,
-          style: TextStyle(
+          style: const TextStyle(
             color: mutedTextColor,
           ),
         ),
       ],
-    );
-  }
-}
-
-class _QuosMusicArt extends StatelessWidget {
-  const _QuosMusicArt({
-    Key? key,
-    required this.music,
-  }) : super(key: key);
-
-  final Music music;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(appBorderRadius),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(.2),
-            blurRadius: 5,
-            offset: Offset(0, 5),
-          ),
-        ],
-      ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(appBorderRadius),
-        child: Stack(
-          children: [
-            Image.asset(
-              music.art,
-              fit: BoxFit.cover,
-            ),
-            Positioned.fill(
-              child: Center(
-                child: Container(
-                  padding: EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                    color: Colors.black.withOpacity(.3),
-                    borderRadius: BorderRadius.circular(100),
-                  ),
-                  child: Icon(
-                    Icons.play_arrow,
-                    size: 14,
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
     );
   }
 }
@@ -349,13 +297,13 @@ class QuosSection extends StatelessWidget {
       children: [
         if (title != null) ...[
           DefaultTextStyle(
-            style: TextStyle(fontSize: 20),
+            style: const TextStyle(fontSize: 20),
             child: Padding(
               padding: const EdgeInsets.only(left: 15),
               child: Row(
                 children: [
                   title!,
-                  Spacer(),
+                  const Spacer(),
                   if (actions.isNotEmpty) ...actions,
                 ],
               ),
