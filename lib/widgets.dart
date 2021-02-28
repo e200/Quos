@@ -3,17 +3,20 @@ import 'package:quos/theme.dart';
 
 class QuosScaffold extends StatelessWidget {
   final Widget body;
+  final Widget? bottomNavigationBar;
 
   const QuosScaffold({
     Key? key,
     required this.body,
+    this.bottomNavigationBar,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: bottomNavigationBar,
       body: QuosBackground(
-        child: body,
+        child: SafeArea(child: body),
       ),
     );
   }
