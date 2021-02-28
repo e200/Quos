@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:quos/theme.dart';
 
+import 'modules/music/model.dart';
+
 class QuosScaffold extends StatelessWidget {
   final Widget body;
   final Widget? bottomNavigationBar;
