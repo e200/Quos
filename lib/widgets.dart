@@ -32,7 +32,7 @@ class QuosBackground extends StatelessWidget {
     return Stack(
       children: [
         Container(
-          constraints: BoxConstraints.expand(),
+          constraints: const BoxConstraints.expand(),
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: appGradientColors,
