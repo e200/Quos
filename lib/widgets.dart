@@ -99,6 +99,50 @@ class QuosMusicArt extends StatelessWidget {
     );
   }
 }
+
+class QuosMusicListTile extends StatelessWidget {
+  const QuosMusicListTile({
+    Key? key,
+    required this.music,
+  }) : super(key: key);
+
+  final Music music;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        QuosMusicArt(
+          music: music,
+          borderRadius: BorderRadius.circular(5),
+        ),
+        const SpaceX(width: 15),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              music.title,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            Text(
+              music.artist,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(
+                color: mutedTextColor,
+                fontSize: 14,
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
 class SpaceY extends StatelessWidget {
   final double height;
 
