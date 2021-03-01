@@ -65,6 +65,7 @@ class QuosNowPlaying extends StatelessWidget {
           ),
         ),
       ),
+      ),
     );
   }
 }
