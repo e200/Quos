@@ -48,6 +48,8 @@ class QuosNowPlaying extends StatelessWidget {
           child: Stack(
             children: [
                 const QuosShaderMask(
+                  child: QuosProgressLine(),
+                ),
               Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 15,
