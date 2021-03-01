@@ -152,6 +152,31 @@ class QuosMusicListTile extends StatelessWidget {
 }
 
 
+class QuosShaderMask extends StatelessWidget {
+  final Widget child;
+
+  const QuosShaderMask({
+    Key? key,
+    required this.child,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ShaderMask(
+      shaderCallback: (bounds) {
+        return const LinearGradient(
+          colors: [
+            Color(0xFF6063FE),
+            Color(0xFFCF59C9),
+            Color(0xFFFB826F),
+          ],
+        ).createShader(bounds);
+      },
+      child: child,
+    );
+  }
+}
+
 class QuosProgressLine extends StatelessWidget {
   final double? width;
   final double? height;
