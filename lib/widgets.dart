@@ -80,28 +80,9 @@ class QuosMusicArt extends StatelessWidget {
       ),
       child: ClipRRect(
         borderRadius: borderRadius ?? BorderRadius.circular(appBorderRadius),
-        child: Stack(
-          children: [
-            Image.asset(
-              music.art,
-              fit: BoxFit.cover,
-            ),
-            /* Positioned.fill(
-              child: Center(
-                child: Container(
-                  padding: EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                    color: Colors.black.withOpacity(.3),
-                    borderRadius: BorderRadius.circular(100),
-                  ),
-                  child: Icon(
-                    Icons.play_arrow,
-                    size: 14,
-                  ),
-                ),
-              ),
-            ), */
-          ],
+        child: Image.asset(
+          music.art,
+          fit: BoxFit.cover,
         ),
       ),
     );
@@ -109,12 +90,12 @@ class QuosMusicArt extends StatelessWidget {
 }
 
 class QuosMusicListTile extends StatelessWidget {
+  final Music music;
+
   const QuosMusicListTile({
     Key? key,
     required this.music,
   }) : super(key: key);
-
-  final Music music;
 
   @override
   Widget build(BuildContext context) {
