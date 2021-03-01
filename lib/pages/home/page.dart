@@ -81,7 +81,9 @@ class HomePage extends StatelessWidget {
                     onTap: () {
                       Navigator.push(context, MaterialPageRoute(
                         builder: (context) {
-                          return const QuosPlaylistPage();
+                            return const QuosPlaylistPage(
+                              title: Text('Recently played'),
+                            );
                         },
                       ));
                     },
@@ -101,6 +103,15 @@ class HomePage extends StatelessWidget {
                       Icons.chevron_right,
                       color: Colors.grey,
                     ),
+                      onTap: () {
+                        Navigator.push(context, MaterialPageRoute(
+                          builder: (context) {
+                            return const QuosPlaylistPage(
+                              title: Text('Mostly played'),
+                            );
+                          },
+                        ));
+                      },
                   ),
                 ],
                 child: QuosMusicList(),
@@ -117,6 +128,15 @@ class HomePage extends StatelessWidget {
                       Icons.chevron_right,
                       color: Colors.grey,
                     ),
+                      onTap: () {
+                        Navigator.push(context, MaterialPageRoute(
+                          builder: (context) {
+                            return const QuosPlaylistPage(
+                              title: Text('Albums'),
+                            );
+                          },
+                        ));
+                      },
                   ),
                 ],
                 child: QuosMusicList(),
@@ -133,6 +153,15 @@ class HomePage extends StatelessWidget {
                       Icons.chevron_right,
                       color: Colors.grey,
                     ),
+                      onTap: () {
+                        Navigator.push(context, MaterialPageRoute(
+                          builder: (context) {
+                            return const QuosPlaylistPage(
+                              title: Text('Genres'),
+                            );
+                          },
+                        ));
+                      },
                   ),
                 ],
                 child: QuosMusicList(),
