@@ -151,6 +151,48 @@ class QuosMusicListTile extends StatelessWidget {
   }
 }
 
+
+class QuosProgressLine extends StatelessWidget {
+  final double? width;
+  final double? height;
+  final double? lineRadius;
+
+  const QuosProgressLine({
+    Key? key,
+    this.width,
+    this.height,
+    this.lineRadius,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final _height = height ?? 2;
+    final _borderRadius = lineRadius != null
+        ? BorderRadius.circular(lineRadius!)
+        : BorderRadius.zero;
+
+    return Stack(
+      children: [
+        Container(
+          height: _height,
+          decoration: BoxDecoration(
+            color: Colors.black.withOpacity(.3),
+            borderRadius: _borderRadius,
+          ),
+        ),
+        Container(
+          height: _height,
+          width: width,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: _borderRadius,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
 class SpaceY extends StatelessWidget {
   final double height;
 
