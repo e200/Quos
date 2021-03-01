@@ -34,12 +34,13 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return QuosScaffold(
       bottomNavigationBar: const QuosNowPlaying(),
-      body: NestedScrollView(
-        headerSliverBuilder: (context, innerBoxIsScrolled) {
-          return [
-            SliverAppBar(
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.only(bottom: 30),
+        physics: const BouncingScrollPhysics(),
+        child: Column(
+          children: [
+            AppBar(
               backgroundColor: Colors.transparent,
-              floating: true,
               elevation: 0,
               title: const _HomePageTitle(),
               actions: [
@@ -58,51 +59,46 @@ class HomePage extends StatelessWidget {
                 ),
               ],
             ),
-          ];
-        },
-        body: SingleChildScrollView(
-          padding: const EdgeInsets.only(bottom: 30),
-          physics: const BouncingScrollPhysics(),
-          child: Wrap(
-            runSpacing: 30,
-            children: [
-              QuosSection(
-                title: const Text('Recently played'),
-                actions: [
-                  QuosAction(
-                    title: const Text(
-                      'More',
-                      style: TextStyle(color: Colors.grey),
-                    ),
-                    icon: const Icon(
-                      Icons.chevron_right,
-                      color: Colors.grey,
-                    ),
-                    onTap: () {
-                      Navigator.push(context, MaterialPageRoute(
-                        builder: (context) {
+            Wrap(
+              runSpacing: 30,
+              children: [
+                QuosSection(
+                  title: const Text('Recently played'),
+                  actions: [
+                    QuosAction(
+                      title: const Text(
+                        'More',
+                        style: TextStyle(color: Colors.grey),
+                      ),
+                      icon: const Icon(
+                        Icons.chevron_right,
+                        color: Colors.grey,
+                      ),
+                      onTap: () {
+                        Navigator.push(context, MaterialPageRoute(
+                          builder: (context) {
                             return const QuosPlaylistPage(
                               title: Text('Recently played'),
                             );
-                        },
-                      ));
-                    },
-                  ),
-                ],
-                child: const QuosMusicList(),
-              ),
-              const QuosSection(
-                title: Text('Mostly played'),
-                actions: [
-                  QuosAction(
-                    title: Text(
-                      'More',
-                      style: TextStyle(color: Colors.grey),
+                          },
+                        ));
+                      },
                     ),
-                    icon: Icon(
-                      Icons.chevron_right,
-                      color: Colors.grey,
-                    ),
+                  ],
+                  child: const QuosMusicList(),
+                ),
+                QuosSection(
+                  title: const Text('Mostly played'),
+                  actions: [
+                    QuosAction(
+                      title: const Text(
+                        'More',
+                        style: TextStyle(color: Colors.grey),
+                      ),
+                      icon: const Icon(
+                        Icons.chevron_right,
+                        color: Colors.grey,
+                      ),
                       onTap: () {
                         Navigator.push(context, MaterialPageRoute(
                           builder: (context) {
@@ -112,22 +108,22 @@ class HomePage extends StatelessWidget {
                           },
                         ));
                       },
-                  ),
-                ],
-                child: QuosMusicList(),
-              ),
-              const QuosSection(
-                title: Text('Albums'),
-                actions: [
-                  QuosAction(
-                    title: Text(
-                      'More',
-                      style: TextStyle(color: Colors.grey),
                     ),
-                    icon: Icon(
-                      Icons.chevron_right,
-                      color: Colors.grey,
-                    ),
+                  ],
+                  child: const QuosMusicList(),
+                ),
+                QuosSection(
+                  title: const Text('Albums'),
+                  actions: [
+                    QuosAction(
+                      title: const Text(
+                        'More',
+                        style: TextStyle(color: Colors.grey),
+                      ),
+                      icon: const Icon(
+                        Icons.chevron_right,
+                        color: Colors.grey,
+                      ),
                       onTap: () {
                         Navigator.push(context, MaterialPageRoute(
                           builder: (context) {
@@ -137,22 +133,22 @@ class HomePage extends StatelessWidget {
                           },
                         ));
                       },
-                  ),
-                ],
-                child: QuosMusicList(),
-              ),
-              const QuosSection(
-                title: Text('Genres'),
-                actions: [
-                  QuosAction(
-                    title: Text(
-                      'More',
-                      style: TextStyle(color: Colors.grey),
                     ),
-                    icon: Icon(
-                      Icons.chevron_right,
-                      color: Colors.grey,
-                    ),
+                  ],
+                  child: const QuosMusicList(),
+                ),
+                QuosSection(
+                  title: const Text('Genres'),
+                  actions: [
+                    QuosAction(
+                      title: const Text(
+                        'More',
+                        style: TextStyle(color: Colors.grey),
+                      ),
+                      icon: const Icon(
+                        Icons.chevron_right,
+                        color: Colors.grey,
+                      ),
                       onTap: () {
                         Navigator.push(context, MaterialPageRoute(
                           builder: (context) {
@@ -162,12 +158,13 @@ class HomePage extends StatelessWidget {
                           },
                         ));
                       },
-                  ),
-                ],
-                child: QuosMusicList(),
-              ),
-            ],
-          ),
+                    ),
+                  ],
+                  child: const QuosMusicList(),
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );
