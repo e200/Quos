@@ -151,6 +151,31 @@ class QuosMusicListTile extends StatelessWidget {
   }
 }
 
+class QuosTrackProgress extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return QuosShaderMask(
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          const QuosProgressLine(
+            lineRadius: 5,
+            height: 3,
+            width: 150,
+          ),
+          Container(
+            width: 15,
+            height: 15,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: Colors.white,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
 
 class QuosShaderMask extends StatelessWidget {
   final Widget child;
