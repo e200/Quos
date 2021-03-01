@@ -41,32 +41,31 @@ class QuosNowPlaying extends StatelessWidget {
                 },
               ));
         },
-      child: SizedBox(
+        child: SizedBox(
           height: 60,
-        child: Material(
-          color: const Color(0xFF282940),
-          child: Stack(
-            children: [
+          child: Material(
+            color: const Color(0xFF282940),
+            child: Stack(
+              children: [
                 const QuosShaderMask(
                   child: QuosProgressLine(),
                 ),
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 15,
-                  vertical: 7,
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 15,
+                    vertical: 7,
+                  ),
+                  child: Row(
+                    children: [
+                      Expanded(child: QuosMusicListTile(music: music)),
+                      const _Buttons(),
+                    ],
+                  ),
                 ),
-                child: Row(
-                  children: [
-                    Expanded(child: QuosMusicListTile(music: music)),
-                    const _Buttons(),
-                  ],
-                ),
-              ),
-              const _QuosTrackProgress(),
-            ],
+              ],
+            ),
           ),
         ),
-      ),
       ),
     );
   }
@@ -98,37 +97,6 @@ class _Buttons extends StatelessWidget {
           color: iconButtonColor,
           icon: const Icon(Icons.playlist_play),
           onPressed: () {},
-        ),
-      ],
-    );
-  }
-}
-
-class _QuosTrackProgress extends StatelessWidget {
-  const _QuosTrackProgress({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          color: Colors.black.withOpacity(.3),
-          height: 2,
-        ),
-        Container(
-          height: 2,
-          width: 250,
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                Color(0xFF6063FE),
-                Color(0xFFCF59C9),
-                Color(0xFFFB826F),
-              ],
-            ),
-          ),
         ),
       ],
     );
