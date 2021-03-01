@@ -47,6 +47,7 @@ class QuosNowPlaying extends StatelessWidget {
           color: const Color(0xFF282940),
           child: Stack(
             children: [
+                const QuosShaderMask(
               Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 15,
