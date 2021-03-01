@@ -72,12 +72,14 @@ class QuosPlaylistPage extends StatelessWidget {
         },
         body: ListView.separated(
           physics: const BouncingScrollPhysics(),
-          padding: const EdgeInsets.all(15),
-          separatorBuilder: (context, index) => const SpaceY(height: 15),
+          separatorBuilder: (context, index) => const Divider(height: 0),
           itemBuilder: (context, index) {
             final _music = _musics[index];
 
-            return QuosMusicListTile(music: _music);
+            return QuosMusicListTile(
+              music: _music,
+              onTap: () {},
+            );
           },
           itemCount: _musics.length,
         ),
@@ -87,73 +89,84 @@ class QuosPlaylistPage extends StatelessWidget {
 }
 
 class QuosMusicListTile extends StatelessWidget {
+  final Music music;
+  final Function()? onTap;
+
   const QuosMusicListTile({
     Key? key,
     required this.music,
+    this.onTap,
   }) : super(key: key);
-
-  final Music music;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      clipBehavior: Clip.hardEdge,
-      constraints: const BoxConstraints(maxHeight: 80),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(appBorderRadius),
-      ),
-      child: Row(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(15).copyWith(right: 0),
-            child: QuosMusicArt(
-              music: music,
-              borderRadius: BorderRadius.circular(100),
-            ),
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: onTap,
+        child: Container(
+          clipBehavior: Clip.hardEdge,
+          constraints: const BoxConstraints(maxHeight: 80),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(appBorderRadius),
           ),
-          const SpaceX(width: 15),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  music.title,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500,
-                  ),
+          child: Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 15,
+                  vertical: 10,
                 ),
-                const SpaceY(),
-                Text(
-                  music.artist,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                    color: mutedTextColor,
-                    fontSize: 16,
-                  ),
+                child: QuosMusicArt(
+                  music: music,
+                  borderRadius: BorderRadius.circular(5),
                 ),
-              ],
-            ),
+              ),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      music.title,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    const SpaceY(),
+                    Text(
+                      music.artist,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                        color: mutedTextColor,
+                        fontSize: 16,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SpaceX(),
+              Padding(
+                padding: const EdgeInsets.only(right: 15),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      '6:17',
+                      style: TextStyle(
+                        color: mutedTextColor,
+                        fontSize: 12,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ],
           ),
-          Padding(
-            padding: const EdgeInsets.only(right: 15),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text(
-                  '6:17',
-                  style: TextStyle(
-                    color: mutedTextColor,
-                    fontSize: 12,
-                    fontWeight: FontWeight.w500,
-                  ),
-                )
-              ],
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }
