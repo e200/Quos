@@ -1,3 +1,3 @@
 # Quos
 
-Media Player App built with Flutter.
+A media player app built with Flutter.
