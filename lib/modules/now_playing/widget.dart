@@ -42,7 +42,7 @@ class QuosNowPlaying extends StatelessWidget {
               ));
         },
       child: SizedBox(
-        height: 52,
+          height: 60,
         child: Material(
           color: const Color(0xFF282940),
           child: Stack(
