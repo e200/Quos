@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quos/modules/music/model.dart';
+import 'package:quos/modules/player.dart';
 import 'package:quos/theme.dart';
 import 'package:quos/widgets.dart';
 
@@ -20,6 +21,26 @@ class QuosNowPlaying extends StatelessWidget {
 
     return Hero(
       tag: heroTag,
+      child: GestureDetector(
+        onTap: () {
+          Navigator.push(
+              context,
+              PageRouteBuilder(
+                fullscreenDialog: true,
+                pageBuilder: (context, animation, secondaryAnimation) {
+                  return SlideTransition(
+                    position: Tween<Offset>(
+                      begin: const Offset(0, 1),
+                      end: Offset.zero,
+                    ).animate(animation),
+                    child: FadeTransition(
+                      opacity: animation,
+                      child: QuosPlayerPage(),
+                    ),
+                  );
+                },
+              ));
+        },
       child: SizedBox(
         height: 52,
         child: Material(
