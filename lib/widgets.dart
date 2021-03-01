@@ -4,18 +4,21 @@ import 'package:quos/theme.dart';
 import 'modules/music/model.dart';
 
 class QuosScaffold extends StatelessWidget {
+  final PreferredSizeWidget? appBar;
   final Widget body;
   final Widget? bottomNavigationBar;
 
   const QuosScaffold({
     Key? key,
     required this.body,
+    this.appBar,
     this.bottomNavigationBar,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: appBar,
       bottomNavigationBar: bottomNavigationBar,
       body: QuosBackground(
         child: SafeArea(child: body),
