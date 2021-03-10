@@ -6,25 +6,25 @@ import '../../theme.dart';
 import '../../widgets.dart';
 
 final _musics = [
-  Music(
+  QuosMusic(
     title: 'Malembe',
     artist: 'Wilson Kentura',
-    art: 'assets/album0.jpg',
+    artwork: 'assets/album0.jpg',
   ),
-  Music(
+  QuosMusic(
     title: 'Ingani',
     artist: 'Afro Warrios & Wilson Kentura feat. Lizwi',
-    art: 'assets/album3.jpg',
+    artwork: 'assets/album3.jpg',
   ),
-  Music(
+  QuosMusic(
     title: 'Haka',
     artist: 'Wilson Kentura',
-    art: 'assets/album1.jpg',
+    artwork: 'assets/album1.jpg',
   ),
-  Music(
+  QuosMusic(
     title: 'Babulla',
     artist: 'Wilson Kentura',
-    art: 'assets/album2.jpg',
+    artwork: 'assets/album2.jpg',
   ),
 ];
 
@@ -89,7 +89,7 @@ class QuosPlaylistPage extends StatelessWidget {
 }
 
 class QuosMusicListTile extends StatelessWidget {
-  final Music music;
+  final QuosMusic music;
   final Function()? onTap;
 
   const QuosMusicListTile({

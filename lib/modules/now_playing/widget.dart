@@ -13,10 +13,10 @@ class QuosNowPlaying extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final music = Music(
+    final music = QuosMusic(
       title: 'Haka',
       artist: 'Wilson Kentura',
-      art: 'assets/album1.jpg',
+      artwork: 'assets/album1.jpg',
     );
 
     return Hero(

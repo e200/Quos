@@ -7,25 +7,25 @@ import '../../theme.dart';
 import '../../widgets.dart';
 
 final _musics = [
-  Music(
+  QuosMusic(
     title: 'Malembe',
     artist: 'Wilson Kentura',
-    art: 'assets/album0.jpg',
+    artwork: 'assets/album0.jpg',
   ),
-  Music(
+  QuosMusic(
     title: 'Ingani',
     artist: 'Afro Warrios & Wilson Kentura feat. Lizwi',
-    art: 'assets/album3.jpg',
+    artwork: 'assets/album3.jpg',
   ),
-  Music(
+  QuosMusic(
     title: 'Haka',
     artist: 'Wilson Kentura',
-    art: 'assets/album1.jpg',
+    artwork: 'assets/album1.jpg',
   ),
-  Music(
+  QuosMusic(
     title: 'Babulla',
     artist: 'Wilson Kentura',
-    art: 'assets/album2.jpg',
+    artwork: 'assets/album2.jpg',
   ),
 ];
 
@@ -248,7 +248,7 @@ class QuosMusicList extends StatelessWidget {
 }
 
 class QuosMusicItem extends StatelessWidget {
-  final Music music;
+  final QuosMusic music;
 
   const QuosMusicItem({
     Key? key,
@@ -272,12 +272,14 @@ class QuosMusicItem extends StatelessWidget {
 }
 
 class _QuosMusicLabel extends StatelessWidget {
+  final QuosMusic music;
+  
   const _QuosMusicLabel({
     Key? key,
     required this.music,
   }) : super(key: key);
 
-  final Music music;
+  final QuosMusic music;
 
   @override
   Widget build(BuildContext context) {

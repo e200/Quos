@@ -7,10 +7,10 @@ import 'music/model.dart';
 class QuosPlayerPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final _music = Music(
+    final _music = QuosMusic(
       title: 'Haka',
       artist: 'Wilson Kentura',
-      art: 'assets/album1.jpg',
+      artwork: 'assets/album1.jpg',
     );
 
     return QuosScaffold(
