@@ -24,22 +24,23 @@ class QuosNowPlaying extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           Navigator.push(
-              context,
-              PageRouteBuilder(
-                fullscreenDialog: true,
-                pageBuilder: (context, animation, secondaryAnimation) {
-                  return SlideTransition(
-                    position: Tween<Offset>(
-                      begin: const Offset(0, 1),
-                      end: Offset.zero,
-                    ).animate(animation),
-                    child: FadeTransition(
-                      opacity: animation,
-                      child: QuosPlayerPage(),
-                    ),
-                  );
-                },
-              ));
+            context,
+            PageRouteBuilder(
+              fullscreenDialog: true,
+              pageBuilder: (context, animation, secondaryAnimation) {
+                return SlideTransition(
+                  position: Tween<Offset>(
+                    begin: const Offset(0, 1),
+                    end: Offset.zero,
+                  ).animate(animation),
+                  child: FadeTransition(
+                    opacity: animation,
+                    child: QuosPlayerPage(),
+                  ),
+                );
+              },
+            ),
+          );
         },
         child: SizedBox(
           height: 60,
