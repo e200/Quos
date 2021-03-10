@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:quos/theme.dart';
 
+import 'modules/library/widget.dart';
 import 'modules/music/model.dart';
+import 'modules/now_playing/widget.dart';
 
 class QuosScaffold extends StatelessWidget {
   final PreferredSizeWidget? appBar;
@@ -56,7 +58,7 @@ class QuosBackground extends StatelessWidget {
 }
 
 class QuosMusicArt extends StatelessWidget {
-  final Music music;
+  final QuosMusic music;
   final BorderRadius? borderRadius;
 
   const QuosMusicArt({
@@ -90,7 +92,7 @@ class QuosMusicArt extends StatelessWidget {
 }
 
 class QuosMusicListTile extends StatelessWidget {
-  final Music music;
+  final QuosMusic music;
 
   const QuosMusicListTile({
     Key? key,
@@ -217,6 +219,20 @@ class QuosProgressLine extends StatelessWidget {
             borderRadius: _borderRadius,
           ),
         ),
+      ],
+    );
+  }
+}
+
+class QuosBottomBar extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        const QuosNowPlaying(),
+        QuosLibraryUpdateStatus(),
       ],
     );
   }
