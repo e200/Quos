@@ -128,7 +128,7 @@ class QuosMusicListTile extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      music.title,
+                      music.title!,
                       overflow: TextOverflow.ellipsis,
                       style: const TextStyle(
                         fontSize: 18,
@@ -137,7 +137,7 @@ class QuosMusicListTile extends StatelessWidget {
                     ),
                     const SpaceY(),
                     Text(
-                      music.artist,
+                      music.artist!,
                       overflow: TextOverflow.ellipsis,
                       style: const TextStyle(
                         color: mutedTextColor,

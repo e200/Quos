@@ -28,7 +28,7 @@ class QuosPlayerPage extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    _music.title,
+                    _music.title!,
                     style: const TextStyle(
                       fontSize: 32,
                       fontWeight: FontWeight.w500,
@@ -36,7 +36,7 @@ class QuosPlayerPage extends StatelessWidget {
                   ),
                   const SpaceY(height: 10),
                   Text(
-                    _music.artist,
+                    _music.artist!,
                     style: const TextStyle(
                       color: mutedTextColor,
                     ),

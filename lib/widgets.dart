@@ -81,7 +81,7 @@ class QuosMusicArt extends StatelessWidget {
       child: ClipRRect(
         borderRadius: borderRadius ?? BorderRadius.circular(appBorderRadius),
         child: Image.asset(
-          music.art,
+          music.artwork!,
           fit: BoxFit.cover,
         ),
       ),
@@ -111,14 +111,14 @@ class QuosMusicListTile extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              music.title,
+              music.title!,
               overflow: TextOverflow.ellipsis,
               style: const TextStyle(
                 fontWeight: FontWeight.w500,
               ),
             ),
             Text(
-              music.artist,
+              music.artist!,
               overflow: TextOverflow.ellipsis,
               style: const TextStyle(
                 color: mutedTextColor,
@@ -136,8 +136,7 @@ class QuosTrackProgress extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return QuosShaderMask(
-      child: Stack(
-        alignment: Alignment.center,
+      child: Row(
         children: [
           const QuosProgressLine(
             lineRadius: 5,
@@ -172,9 +171,8 @@ class QuosShaderMask extends StatelessWidget {
       shaderCallback: (bounds) {
         return const LinearGradient(
           colors: [
-            Color(0xFF6063FE),
-            Color(0xFFCF59C9),
-            Color(0xFFFB826F),
+            Colors.deepPurple,
+            Colors.deepOrange,
           ],
         ).createShader(bounds);
       },
