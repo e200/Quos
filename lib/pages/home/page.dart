@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:quos/modules/library/updater.dart';
 import 'package:quos/modules/music/model.dart';
-import 'package:quos/modules/now_playing/widget.dart';
 import 'package:quos/pages/playlist/page.dart';
 
 import '../../theme.dart';
@@ -29,7 +30,7 @@ final _musics = [
   ),
 ];
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -45,138 +46,141 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return QuosScaffold(
-      bottomNavigationBar: const QuosNowPlaying(),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.only(bottom: 30),
-        physics: const BouncingScrollPhysics(),
-        child: Column(
-          children: [
-            AppBar(
-              backgroundColor: Colors.transparent,
-              elevation: 0,
-              title: const _HomePageTitle(),
-              actions: [
-                PopupMenuButton(
-                  icon: const Icon(Icons.more_vert),
-                  itemBuilder: (context) {
-                    return [
-                      const PopupMenuItem(
-                        child: Text('Settings'),
+      bottomNavigationBar: QuosBottomBar(),
+      body: RefreshIndicator(
+        onRefresh: () {
+          return Future.delayed(const Duration(seconds: 1));
+        },
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.only(bottom: 30),
+          physics: const BouncingScrollPhysics(),
+          child: Column(
+            children: [
+              AppBar(
+                backgroundColor: Colors.transparent,
+                elevation: 0,
+                title: const _HomePageTitle(),
+                actions: [
+                  PopupMenuButton(
+                    icon: const Icon(Icons.more_vert),
+                    itemBuilder: (context) {
+                      return [
+                        const PopupMenuItem(
+                          child: Text('Update library'),
+                        ),
+                        const PopupMenuItem(
+                          child: Text('Settings'),
+                        ),
+                        const PopupMenuItem(
+                          child: Text('About'),
+                        ),
+                      ];
+                    },
+                    onSelected: (value) {
+                      context.read(libraryUpdateStateNotifierProvider).update();
+                    },
+                  ),
+                ],
+              ),
+              Wrap(
+                runSpacing: 30,
+                children: [
+                  QuosSection(
+                    title: const Text('Recently played'),
+                    actions: [
+                      QuosAction(
+                        title: const Text(
+                          'More',
+                          style: TextStyle(color: Colors.grey),
+                        ),
+                        icon: const Icon(
+                          Icons.chevron_right,
+                          color: Colors.grey,
+                        ),
+                        onTap: () {},
                       ),
-                      const PopupMenuItem(
-                        child: Text('About'),
+                    ],
+                    child: const QuosMusicList(),
+                  ),
+                  QuosSection(
+                    title: const Text('Mostly played'),
+                    actions: [
+                      QuosAction(
+                        title: const Text(
+                          'More',
+                          style: TextStyle(color: Colors.grey),
+                        ),
+                        icon: const Icon(
+                          Icons.chevron_right,
+                          color: Colors.grey,
+                        ),
+                        onTap: () {
+                          Navigator.push(context, MaterialPageRoute(
+                            builder: (context) {
+                              return const QuosPlaylistPage(
+                                title: Text('Mostly played'),
+                              );
+                            },
+                          ));
+                        },
                       ),
-                    ];
-                  },
-                ),
-              ],
-            ),
-            Wrap(
-              runSpacing: 30,
-              children: [
-                QuosSection(
-                  title: const Text('Recently played'),
-                  actions: [
-                    QuosAction(
-                      title: const Text(
-                        'More',
-                        style: TextStyle(color: Colors.grey),
+                    ],
+                    child: const QuosMusicList(),
+                  ),
+                  QuosSection(
+                    title: const Text('Albums'),
+                    actions: [
+                      QuosAction(
+                        title: const Text(
+                          'More',
+                          style: TextStyle(color: Colors.grey),
+                        ),
+                        icon: const Icon(
+                          Icons.chevron_right,
+                          color: Colors.grey,
+                        ),
+                        onTap: () {
+                          Navigator.push(context, MaterialPageRoute(
+                            builder: (context) {
+                              return const QuosPlaylistPage(
+                                title: Text('Albums'),
+                              );
+                            },
+                          ));
+                        },
                       ),
-                      icon: const Icon(
-                        Icons.chevron_right,
-                        color: Colors.grey,
+                    ],
+                    child: const QuosMusicList(),
+                  ),
+                  QuosSection(
+                    title: const Text('Genres'),
+                    actions: [
+                      QuosAction(
+                        title: const Text(
+                          'More',
+                          style: TextStyle(color: Colors.grey),
+                        ),
+                        icon: const Icon(
+                          Icons.chevron_right,
+                          color: Colors.grey,
+                        ),
+                        onTap: () {
+                          Navigator.push(context, MaterialPageRoute(
+                            builder: (context) {
+                              return const QuosPlaylistPage(
+                                title: Text('Genres'),
+                              );
+                            },
+                          ));
+                        },
                       ),
-                      onTap: () {
-                        Navigator.push(context, MaterialPageRoute(
-                          builder: (context) {
-                            return const QuosPlaylistPage(
-                              title: Text('Recently played'),
-                            );
-                          },
-                        ));
-                      },
-                    ),
-                  ],
-                  child: const QuosMusicList(),
-                ),
-                QuosSection(
-                  title: const Text('Mostly played'),
-                  actions: [
-                    QuosAction(
-                      title: const Text(
-                        'More',
-                        style: TextStyle(color: Colors.grey),
-                      ),
-                      icon: const Icon(
-                        Icons.chevron_right,
-                        color: Colors.grey,
-                      ),
-                      onTap: () {
-                        Navigator.push(context, MaterialPageRoute(
-                          builder: (context) {
-                            return const QuosPlaylistPage(
-                              title: Text('Mostly played'),
-                            );
-                          },
-                        ));
-                      },
-                    ),
-                  ],
-                  child: const QuosMusicList(),
-                ),
-                QuosSection(
-                  title: const Text('Albums'),
-                  actions: [
-                    QuosAction(
-                      title: const Text(
-                        'More',
-                        style: TextStyle(color: Colors.grey),
-                      ),
-                      icon: const Icon(
-                        Icons.chevron_right,
-                        color: Colors.grey,
-                      ),
-                      onTap: () {
-                        Navigator.push(context, MaterialPageRoute(
-                          builder: (context) {
-                            return const QuosPlaylistPage(
-                              title: Text('Albums'),
-                            );
-                          },
-                        ));
-                      },
-                    ),
-                  ],
-                  child: const QuosMusicList(),
-                ),
-                QuosSection(
-                  title: const Text('Genres'),
-                  actions: [
-                    QuosAction(
-                      title: const Text(
-                        'More',
-                        style: TextStyle(color: Colors.grey),
-                      ),
-                      icon: const Icon(
-                        Icons.chevron_right,
-                        color: Colors.grey,
-                      ),
-                      onTap: () {
-                        Navigator.push(context, MaterialPageRoute(
-                          builder: (context) {
-                            return const QuosPlaylistPage(
-                              title: Text('Genres'),
-                            );
-                          },
-                        ));
-                      },
-                    ),
-                  ],
-                  child: const QuosMusicList(),
-                ),
-              ],
-            ),
-          ],
+                    ],
+                    child: const QuosMusicList(),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -291,8 +295,6 @@ class _QuosMusicLabel extends StatelessWidget {
     required this.music,
   }) : super(key: key);
 
-  final QuosMusic music;
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -307,7 +309,7 @@ class _QuosMusicLabel extends StatelessWidget {
         ),
         const SpaceY(),
         Text(
-          music.artist,
+          music.artist!,
           overflow: TextOverflow.ellipsis,
           style: const TextStyle(
             color: mutedTextColor,
