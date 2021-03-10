@@ -31,6 +31,18 @@ final _musics = [
 
 class HomePage extends StatelessWidget {
   @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    super.initState();
+
+    context.read(libraryUpdateStateNotifierProvider).update();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return QuosScaffold(
       bottomNavigationBar: const QuosNowPlaying(),
