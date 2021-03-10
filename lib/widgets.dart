@@ -43,7 +43,7 @@ class QuosBackground extends StatelessWidget {
           constraints: const BoxConstraints.expand(),
           decoration: BoxDecoration(
             gradient: LinearGradient(
-              colors: appGradientColors,
+              colors: appBackgroundGradientColors,
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
             ),
