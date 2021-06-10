@@ -60,16 +60,22 @@ class QuosBackground extends StatelessWidget {
 class QuosMusicArt extends StatelessWidget {
   final QuosMusic music;
   final BorderRadius? borderRadius;
+  final double? width;
+  final double? height;
 
   const QuosMusicArt({
     Key? key,
     this.borderRadius,
     required this.music,
+    this.width,
+    this.height,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: width,
+      height: height,
       decoration: BoxDecoration(
         borderRadius: borderRadius ?? BorderRadius.circular(appBorderRadius),
         boxShadow: [
@@ -82,9 +88,25 @@ class QuosMusicArt extends StatelessWidget {
       ),
       child: ClipRRect(
         borderRadius: borderRadius ?? BorderRadius.circular(appBorderRadius),
-        child: Image.asset(
-          music.artwork!,
-          fit: BoxFit.cover,
+        child: Builder(
+          builder: (context) {
+            if (music.artwork == null) {
+              return Container(
+                color: appBackgroundGradientColors.last,
+                child: const Center(
+                  child: Icon(
+                    Icons.music_note,
+                    size: 32,
+                  ),
+                ),
+              );
+            }
+
+            return Image.asset(
+              music.artwork!,
+              fit: BoxFit.cover,
+            );
+          },
         ),
       ),
     );
@@ -101,33 +123,24 @@ class QuosMusicListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        QuosMusicArt(
-          music: music,
-          borderRadius: BorderRadius.circular(5),
+        Text(
+          music.title ?? music.fileName!,
+          overflow: TextOverflow.ellipsis,
+          style: const TextStyle(
+            fontWeight: FontWeight.w500,
+          ),
         ),
-        const SpaceX(width: 15),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              music.title!,
-              overflow: TextOverflow.ellipsis,
-              style: const TextStyle(
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-            Text(
-              music.artist!,
-              overflow: TextOverflow.ellipsis,
-              style: const TextStyle(
-                color: mutedTextColor,
-                fontSize: 14,
-              ),
-            ),
-          ],
+        Text(
+          music.artist!,
+          overflow: TextOverflow.ellipsis,
+          style: const TextStyle(
+            color: mutedTextColor,
+            fontSize: 14,
+          ),
         ),
       ],
     );
@@ -202,24 +215,13 @@ class QuosProgressLine extends StatelessWidget {
         ? BorderRadius.circular(lineRadius!)
         : BorderRadius.zero;
 
-    return Stack(
-      children: [
-        Container(
-          height: _height,
-          decoration: BoxDecoration(
-            color: Colors.black.withOpacity(.3),
-            borderRadius: _borderRadius,
-          ),
-        ),
-        Container(
-          height: _height,
-          width: width,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: _borderRadius,
-          ),
-        ),
-      ],
+    return Container(
+      height: _height,
+      width: width,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: _borderRadius,
+      ),
     );
   }
 }
@@ -231,8 +233,8 @@ class QuosBottomBar extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        const QuosNowPlaying(),
         QuosLibraryUpdateStatus(),
+        const QuosNowPlaying(),
       ],
     );
   }
