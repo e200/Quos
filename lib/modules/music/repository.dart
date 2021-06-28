@@ -34,4 +34,15 @@ class MusicRepository {
 
     return List<QuosMusic>.from(_jsonMusics.map((e) => QuosMusic.fromJson(e)));
   }
+
+  Future<List<QuosMusic>> getMostPlayed() async {
+    final _mostPlayedJsonMusics = await db.query(
+      table,
+      /* where: 'play_total != 0',
+      orderBy: 'play_total DESC' */
+    );
+
+    return List<QuosMusic>.from(
+        _mostPlayedJsonMusics.map((e) => QuosMusic.fromJson(e)));
+  }
 }

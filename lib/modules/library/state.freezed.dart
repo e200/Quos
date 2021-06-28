@@ -33,6 +33,10 @@ class _$LibraryUpdateStateTearOff {
     return const _Updated();
   }
 
+  _Deleting deleting() {
+    return const _Deleting();
+  }
+
   _Error error() {
     return const _Error();
   }
@@ -48,6 +52,7 @@ mixin _$LibraryUpdateState {
     required TResult Function() checkingUpdates,
     required TResult Function(int total, int index, QuosMusic music) updating,
     required TResult Function() updated,
+    required TResult Function() deleting,
     required TResult Function() error,
   }) =>
       throw _privateConstructorUsedError;
@@ -56,6 +61,7 @@ mixin _$LibraryUpdateState {
     TResult Function()? checkingUpdates,
     TResult Function(int total, int index, QuosMusic music)? updating,
     TResult Function()? updated,
+    TResult Function()? deleting,
     TResult Function()? error,
     required TResult orElse(),
   }) =>
@@ -65,6 +71,7 @@ mixin _$LibraryUpdateState {
     required TResult Function(_CheckingUpdates value) checkingUpdates,
     required TResult Function(_Updating value) updating,
     required TResult Function(_Updated value) updated,
+    required TResult Function(_Deleting value) deleting,
     required TResult Function(_Error value) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -73,6 +80,7 @@ mixin _$LibraryUpdateState {
     TResult Function(_CheckingUpdates value)? checkingUpdates,
     TResult Function(_Updating value)? updating,
     TResult Function(_Updated value)? updated,
+    TResult Function(_Deleting value)? deleting,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) =>
@@ -138,6 +146,7 @@ class _$_CheckingUpdates implements _CheckingUpdates {
     required TResult Function() checkingUpdates,
     required TResult Function(int total, int index, QuosMusic music) updating,
     required TResult Function() updated,
+    required TResult Function() deleting,
     required TResult Function() error,
   }) {
     return checkingUpdates();
@@ -149,6 +158,7 @@ class _$_CheckingUpdates implements _CheckingUpdates {
     TResult Function()? checkingUpdates,
     TResult Function(int total, int index, QuosMusic music)? updating,
     TResult Function()? updated,
+    TResult Function()? deleting,
     TResult Function()? error,
     required TResult orElse(),
   }) {
@@ -164,6 +174,7 @@ class _$_CheckingUpdates implements _CheckingUpdates {
     required TResult Function(_CheckingUpdates value) checkingUpdates,
     required TResult Function(_Updating value) updating,
     required TResult Function(_Updated value) updated,
+    required TResult Function(_Deleting value) deleting,
     required TResult Function(_Error value) error,
   }) {
     return checkingUpdates(this);
@@ -175,6 +186,7 @@ class _$_CheckingUpdates implements _CheckingUpdates {
     TResult Function(_CheckingUpdates value)? checkingUpdates,
     TResult Function(_Updating value)? updating,
     TResult Function(_Updated value)? updated,
+    TResult Function(_Deleting value)? deleting,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -276,6 +288,7 @@ class _$_Updating implements _Updating {
     required TResult Function() checkingUpdates,
     required TResult Function(int total, int index, QuosMusic music) updating,
     required TResult Function() updated,
+    required TResult Function() deleting,
     required TResult Function() error,
   }) {
     return updating(total, index, music);
@@ -287,6 +300,7 @@ class _$_Updating implements _Updating {
     TResult Function()? checkingUpdates,
     TResult Function(int total, int index, QuosMusic music)? updating,
     TResult Function()? updated,
+    TResult Function()? deleting,
     TResult Function()? error,
     required TResult orElse(),
   }) {
@@ -302,6 +316,7 @@ class _$_Updating implements _Updating {
     required TResult Function(_CheckingUpdates value) checkingUpdates,
     required TResult Function(_Updating value) updating,
     required TResult Function(_Updated value) updated,
+    required TResult Function(_Deleting value) deleting,
     required TResult Function(_Error value) error,
   }) {
     return updating(this);
@@ -313,6 +328,7 @@ class _$_Updating implements _Updating {
     TResult Function(_CheckingUpdates value)? checkingUpdates,
     TResult Function(_Updating value)? updating,
     TResult Function(_Updated value)? updated,
+    TResult Function(_Deleting value)? deleting,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -377,6 +393,7 @@ class _$_Updated implements _Updated {
     required TResult Function() checkingUpdates,
     required TResult Function(int total, int index, QuosMusic music) updating,
     required TResult Function() updated,
+    required TResult Function() deleting,
     required TResult Function() error,
   }) {
     return updated();
@@ -388,6 +405,7 @@ class _$_Updated implements _Updated {
     TResult Function()? checkingUpdates,
     TResult Function(int total, int index, QuosMusic music)? updating,
     TResult Function()? updated,
+    TResult Function()? deleting,
     TResult Function()? error,
     required TResult orElse(),
   }) {
@@ -403,6 +421,7 @@ class _$_Updated implements _Updated {
     required TResult Function(_CheckingUpdates value) checkingUpdates,
     required TResult Function(_Updating value) updating,
     required TResult Function(_Updated value) updated,
+    required TResult Function(_Deleting value) deleting,
     required TResult Function(_Error value) error,
   }) {
     return updated(this);
@@ -414,6 +433,7 @@ class _$_Updated implements _Updated {
     TResult Function(_CheckingUpdates value)? checkingUpdates,
     TResult Function(_Updating value)? updating,
     TResult Function(_Updated value)? updated,
+    TResult Function(_Deleting value)? deleting,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {
@@ -426,6 +446,101 @@ class _$_Updated implements _Updated {
 
 abstract class _Updated implements LibraryUpdateState {
   const factory _Updated() = _$_Updated;
+}
+
+/// @nodoc
+abstract class _$DeletingCopyWith<$Res> {
+  factory _$DeletingCopyWith(_Deleting value, $Res Function(_Deleting) then) =
+      __$DeletingCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$DeletingCopyWithImpl<$Res>
+    extends _$LibraryUpdateStateCopyWithImpl<$Res>
+    implements _$DeletingCopyWith<$Res> {
+  __$DeletingCopyWithImpl(_Deleting _value, $Res Function(_Deleting) _then)
+      : super(_value, (v) => _then(v as _Deleting));
+
+  @override
+  _Deleting get _value => super._value as _Deleting;
+}
+
+/// @nodoc
+class _$_Deleting implements _Deleting {
+  const _$_Deleting();
+
+  @override
+  String toString() {
+    return 'LibraryUpdateState.deleting()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is _Deleting);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() checkingUpdates,
+    required TResult Function(int total, int index, QuosMusic music) updating,
+    required TResult Function() updated,
+    required TResult Function() deleting,
+    required TResult Function() error,
+  }) {
+    return deleting();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? checkingUpdates,
+    TResult Function(int total, int index, QuosMusic music)? updating,
+    TResult Function()? updated,
+    TResult Function()? deleting,
+    TResult Function()? error,
+    required TResult orElse(),
+  }) {
+    if (deleting != null) {
+      return deleting();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_CheckingUpdates value) checkingUpdates,
+    required TResult Function(_Updating value) updating,
+    required TResult Function(_Updated value) updated,
+    required TResult Function(_Deleting value) deleting,
+    required TResult Function(_Error value) error,
+  }) {
+    return deleting(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_CheckingUpdates value)? checkingUpdates,
+    TResult Function(_Updating value)? updating,
+    TResult Function(_Updated value)? updated,
+    TResult Function(_Deleting value)? deleting,
+    TResult Function(_Error value)? error,
+    required TResult orElse(),
+  }) {
+    if (deleting != null) {
+      return deleting(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Deleting implements LibraryUpdateState {
+  const factory _Deleting() = _$_Deleting;
 }
 
 /// @nodoc
@@ -467,6 +582,7 @@ class _$_Error implements _Error {
     required TResult Function() checkingUpdates,
     required TResult Function(int total, int index, QuosMusic music) updating,
     required TResult Function() updated,
+    required TResult Function() deleting,
     required TResult Function() error,
   }) {
     return error();
@@ -478,6 +594,7 @@ class _$_Error implements _Error {
     TResult Function()? checkingUpdates,
     TResult Function(int total, int index, QuosMusic music)? updating,
     TResult Function()? updated,
+    TResult Function()? deleting,
     TResult Function()? error,
     required TResult orElse(),
   }) {
@@ -493,6 +610,7 @@ class _$_Error implements _Error {
     required TResult Function(_CheckingUpdates value) checkingUpdates,
     required TResult Function(_Updating value) updating,
     required TResult Function(_Updated value) updated,
+    required TResult Function(_Deleting value) deleting,
     required TResult Function(_Error value) error,
   }) {
     return error(this);
@@ -504,6 +622,7 @@ class _$_Error implements _Error {
     TResult Function(_CheckingUpdates value)? checkingUpdates,
     TResult Function(_Updating value)? updating,
     TResult Function(_Updated value)? updated,
+    TResult Function(_Deleting value)? deleting,
     TResult Function(_Error value)? error,
     required TResult orElse(),
   }) {

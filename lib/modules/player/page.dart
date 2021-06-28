@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quos/theme.dart';
 import 'package:quos/widgets.dart';
 
-import 'music/model.dart';
+import '../music/model.dart';
 
 class QuosPlayerPage extends StatelessWidget {
   @override
@@ -22,7 +22,9 @@ class QuosPlayerPage extends StatelessWidget {
                 children: [
                   Padding(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 64, vertical: 32),
+                      horizontal: 64,
+                      vertical: 32,
+                    ),
                     child: QuosMusicArt(
                       music: _music,
                     ),

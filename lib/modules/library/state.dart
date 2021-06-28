@@ -12,5 +12,6 @@ abstract class LibraryUpdateState with _$LibraryUpdateState {
     required QuosMusic music,
   }) = _Updating;
   const factory LibraryUpdateState.updated() = _Updated;
+  const factory LibraryUpdateState.deleting() = _Deleting;
   const factory LibraryUpdateState.error() = _Error;
 }

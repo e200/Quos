@@ -29,7 +29,10 @@ class QuosLibraryUpdateStatus extends StatelessWidget {
                 child: Text(
                   music.title ?? music.fileName!,
                   overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(color: Colors.grey),
+                  style: const TextStyle(
+                    color: Colors.grey,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               );
             },

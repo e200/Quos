@@ -3,22 +3,33 @@ import 'dart:io';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:audiotagger/audiotagger.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:path/path.dart' as path;
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:permission_handler/permission_handler.dart';
 import 'package:quos/modules/library/state.dart';
 import 'package:quos/modules/music/model.dart';
 import 'package:quos/modules/music/repository.dart';
-import 'package:path/path.dart' as path;
+import 'package:quos/services/config.dart';
+import 'package:quos/services/db.dart';
 
-class LibraryUpdater {
+class LibraryManager {
+  static const _lastLibraryUpdate = 'LAST_LIBRARY_UPDATE';
+
+  final QuosConfig config;
+  final DbManager dbManager;
   final MusicRepository musicRepository;
 
   final _supportedFileFormats = <String>['.mp3'];
 
-  LibraryUpdater({required this.musicRepository});
+  LibraryManager({
+    required this.musicRepository,
+    required this.config,
+    required this.dbManager,
+  });
 
-  Future<void> update(
-      {Function(int total, int index, QuosMusic music)? onEachUpdate}) async {
+  Future<void> update({
+    Function(int total, int index, QuosMusic music)? onEachUpdate,
+  }) async {
     await Permission.storage.request();
 
     final _storage = Directory('/storage/emulated/0');
@@ -38,11 +49,6 @@ class LibraryUpdater {
         final _tags = await _tagger.readTags(path: _supportedFile.path);
 
         final _quosMusic = QuosMusic(
-          fileName: path.basename(_filePath),
-          fileFormat: path.extension(_filePath),
-          filePath: _filePath,
-          fileSize: _stat.size,
-          fileLastModified: _stat.changed,
           title: _tags.title,
           artist: _tags.artist,
           album: _tags.album,
@@ -55,6 +61,11 @@ class LibraryUpdater {
           lyrics: _tags.lyrics,
           year: int.tryParse(_tags.year),
           artwork: _tags.artwork,
+          fileName: path.basename(_filePath),
+          fileFormat: path.extension(_filePath),
+          filePath: _filePath,
+          fileSize: _stat.size,
+          fileLastModified: _stat.changed,
         );
 
         final _music = await musicRepository.create(_quosMusic.toJson());
@@ -77,13 +88,35 @@ class LibraryUpdater {
     return supportedFileFormats.any((element) => path.endsWith(element));
   }
 
-  Future<bool> hasUpdates() async {
-    return true;
+  bool shouldUpdate() {
+    if (!config.hasKey(_lastLibraryUpdate)) {
+      return true;
+    }
+
+    final _lastUpdate = config.getString(_lastLibraryUpdate);
+
+    final _date = DateTime.tryParse(_lastUpdate!);
+
+    return _date!.difference(DateTime.now()) < const Duration(hours: 5);
+  }
+
+  void setUpdateTime() {
+    config.setString(_lastLibraryUpdate, DateTime.now().toIso8601String());
+  }
+
+  Future<void> delete() async {
+    await dbManager.delete();
+  }
+
+  Future<void> openDb() async {
+    await dbManager.openDb();
   }
 }
 
-final libraryUpdaterProvider = Provider<LibraryUpdater>((ref) {
-  return LibraryUpdater(
+final libraryUpdaterProvider = Provider<LibraryManager>((ref) {
+  return LibraryManager(
+    dbManager: ref.watch(dbManagerProvider),
+    config: ref.watch(quosConfigProvider),
     musicRepository: ref.watch(musicRepositoryProvider),
   );
 });
@@ -91,22 +124,22 @@ final libraryUpdaterProvider = Provider<LibraryUpdater>((ref) {
 final libraryUpdateStateNotifierProvider =
     StateNotifierProvider<LibraryUpdateStateNotifier>((ref) {
   return LibraryUpdateStateNotifier(
-    libraryUpdater: ref.watch(libraryUpdaterProvider),
+    libraryManager: ref.watch(libraryUpdaterProvider),
   );
 });
 
 class LibraryUpdateStateNotifier extends StateNotifier<LibraryUpdateState> {
-  final LibraryUpdater libraryUpdater;
+  final LibraryManager libraryManager;
 
   LibraryUpdateStateNotifier({
-    required this.libraryUpdater,
+    required this.libraryManager,
   }) : super(const LibraryUpdateState.checkingUpdates());
 
   Future<void> update() async {
     state = const LibraryUpdateState.checkingUpdates();
 
-    if (await libraryUpdater.hasUpdates()) {
-      await libraryUpdater.update(
+    if (libraryManager.shouldUpdate()) {
+      await libraryManager.update(
         onEachUpdate: (total, index, music) {
           state = LibraryUpdateState.updating(
             total: total,
@@ -115,6 +148,33 @@ class LibraryUpdateStateNotifier extends StateNotifier<LibraryUpdateState> {
           );
         },
       );
+
+      libraryManager.setUpdateTime();
+    }
+
+    state = const LibraryUpdateState.updated();
+  }
+
+  Future<void> recreat() async {
+    state = const LibraryUpdateState.deleting();
+
+    await libraryManager.delete();
+    await libraryManager.openDb();
+
+    state = const LibraryUpdateState.checkingUpdates();
+
+    if (libraryManager.shouldUpdate()) {
+      await libraryManager.update(
+        onEachUpdate: (total, index, music) {
+          state = LibraryUpdateState.updating(
+            total: total,
+            index: index,
+            music: music,
+          );
+        },
+      );
+
+      libraryManager.setUpdateTime();
     }
 
     state = const LibraryUpdateState.updated();
