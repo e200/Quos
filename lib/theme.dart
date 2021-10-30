@@ -14,10 +14,14 @@ const appBorderRadius = 15.0;
 ThemeData getTheme(BuildContext context) {
   return ThemeData.dark().copyWith(
     primaryColor: Colors.deepOrange,
-    accentColor: Colors.deepOrangeAccent,
+    colorScheme: Theme.of(context).colorScheme.copyWith(
+          secondary: Colors.deepOrangeAccent,
+        ),
     visualDensity: VisualDensity.adaptivePlatformDensity,
-    pageTransitionsTheme: const PageTransitionsTheme(builders: {
-      TargetPlatform.android: CupertinoPageTransitionsBuilder(),
-    }),
+    pageTransitionsTheme: const PageTransitionsTheme(
+      builders: {
+        TargetPlatform.android: CupertinoPageTransitionsBuilder(),
+      },
+    ),
   );
 }

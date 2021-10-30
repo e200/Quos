@@ -30,10 +30,12 @@ class _QuosAppState extends State<QuosApp> with WidgetsBindingObserver {
   }
 
   void _setSystemOverlayStyle() {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      systemNavigationBarColor: appBackgroundGradientColors.last,
-      systemNavigationBarIconBrightness: Brightness.light,
-    ));
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+        systemNavigationBarColor: appBackgroundGradientColors.last,
+        systemNavigationBarIconBrightness: Brightness.light,
+      ),
+    );
   }
 
   @override
@@ -45,7 +47,7 @@ class _QuosAppState extends State<QuosApp> with WidgetsBindingObserver {
       theme: getTheme(context),
       home: Consumer(
         builder: (context, watch, child) {
-          final _state = watch(initStateNotifierProvider.state);
+          final _state = watch(initStateNotifierProvider);
 
           return Navigator(
             onPopPage: (route, result) {
@@ -55,7 +57,7 @@ class _QuosAppState extends State<QuosApp> with WidgetsBindingObserver {
               _state.maybeWhen(
                 initialized: () => MaterialPage(child: HomePage()),
                 orElse: () => MaterialPage(child: InitPage()),
-              ),
+              ) as Page,
             ],
           );
         },

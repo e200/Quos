@@ -45,7 +45,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
 
-    context.read(libraryUpdateStateNotifierProvider).update();
+    context.read(libraryUpdateStateNotifierProvider.notifier).update();
   }
 
   @override
@@ -53,17 +53,18 @@ class _HomePageState extends State<HomePage> {
     return QuosScaffold(
       bottomNavigationBar: QuosBottomBar(),
       body: ProviderListener<LibraryUpdateState>(
-        provider: libraryUpdateStateNotifierProvider.state,
+        provider: libraryUpdateStateNotifierProvider,
         onChange: (context, value) {
           value.maybeWhen(
             updated: () {
-              context.read(_mostPlayedMusicListStateProvider).load();
+              context.read(_mostPlayedMusicListStateProvider.notifier).load();
             },
             orElse: () {},
           );
         },
         child: RefreshIndicator(
-          onRefresh: context.read(libraryUpdateStateNotifierProvider).update,
+          onRefresh:
+              context.read(libraryUpdateStateNotifierProvider.notifier).update,
           child: SingleChildScrollView(
             padding: const EdgeInsets.only(bottom: 30),
             physics: const BouncingScrollPhysics(),
@@ -92,7 +93,7 @@ class _HomePageState extends State<HomePage> {
                       },
                       onSelected: (value) {
                         context
-                            .read(libraryUpdateStateNotifierProvider)
+                            .read(libraryUpdateStateNotifierProvider.notifier)
                             .update();
                       },
                     ),
@@ -119,7 +120,7 @@ class _HomePageState extends State<HomePage> {
                       child: Consumer(
                         builder: (context, watch, child) {
                           final _state =
-                              watch(_mostPlayedMusicListStateProvider.state);
+                              watch(_mostPlayedMusicListStateProvider);
 
                           return _state.maybeWhen(
                             data: (musics) => _QuosHorizontalPlaylist(
@@ -148,13 +149,16 @@ class _HomePageState extends State<HomePage> {
                             color: Colors.grey,
                           ),
                           onTap: () {
-                            Navigator.push(context, MaterialPageRoute(
-                              builder: (context) {
-                                return const QuosPlaylistPage(
-                                  title: Text('Mostly played'),
-                                );
-                              },
-                            ));
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return const QuosPlaylistPage(
+                                    title: Text('Mostly played'),
+                                  );
+                                },
+                              ),
+                            );
                           },
                         ),
                       ],
@@ -173,13 +177,16 @@ class _HomePageState extends State<HomePage> {
                             color: Colors.grey,
                           ),
                           onTap: () {
-                            Navigator.push(context, MaterialPageRoute(
-                              builder: (context) {
-                                return const QuosPlaylistPage(
-                                  title: Text('Albums'),
-                                );
-                              },
-                            ));
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return const QuosPlaylistPage(
+                                    title: Text('Albums'),
+                                  );
+                                },
+                              ),
+                            );
                           },
                         ),
                       ],
@@ -198,13 +205,16 @@ class _HomePageState extends State<HomePage> {
                             color: Colors.grey,
                           ),
                           onTap: () {
-                            Navigator.push(context, MaterialPageRoute(
-                              builder: (context) {
-                                return const QuosPlaylistPage(
-                                  title: Text('Genres'),
-                                );
-                              },
-                            ));
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return const QuosPlaylistPage(
+                                    title: Text('Genres'),
+                                  );
+                                },
+                              ),
+                            );
                           },
                         ),
                       ],
@@ -221,8 +231,8 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-final _mostPlayedMusicListStateProvider =
-    StateNotifierProvider<_MostPlayedMusicListNotifier>((ref) {
+final _mostPlayedMusicListStateProvider = StateNotifierProvider<
+    _MostPlayedMusicListNotifier, MostPlayedMusicListState>((ref) {
   return _MostPlayedMusicListNotifier(
     musicLibrary: ref.watch(musicLibraryProvider),
   );
@@ -325,7 +335,9 @@ class _QuosHorizontalPlaylist extends StatelessWidget {
           return _QuosMusicItem(
             music: _music,
             onTap: () async {
-              context.read(playerControllerProvider).play(playlist!, index);
+              context
+                  .read(playerControllerProvider.notifier)
+                  .play(playlist!, index);
             },
           );
         },

@@ -6,35 +6,33 @@ part of 'model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-QuosMusic _$QuosMusicFromJson(Map<String, dynamic> json) {
-  return QuosMusic(
-    title: json['title'] as String?,
-    artist: json['artist'] as String?,
-    album: json['album'] as String?,
-    genre: json['genre'] as String?,
-    artwork: json['artwork'] as String?,
-    trackNumber: json['track_number'] as int?,
-    trackTotal: json['track_total'] as int?,
-    discNumber: json['disc_number'] as int?,
-    discTotal: json['disc_total'] as int?,
-    lyrics: json['lyrics'] as String?,
-    albumArtist: json['album_artist'] as String?,
-    year: json['year'] as int?,
-    createdAt: json['created_at'] == null
-        ? null
-        : DateTime.parse(json['created_at'] as String),
-    updatedAt: json['updated_at'] == null
-        ? null
-        : DateTime.parse(json['updated_at'] as String),
-    fileName: json['file_name'] as String?,
-    filePath: json['file_path'] as String?,
-    fileFormat: json['file_format'] as String?,
-    fileSize: json['file_size'] as int?,
-    fileLastModified: json['file_last_modified'] == null
-        ? null
-        : DateTime.parse(json['file_last_modified'] as String),
-  );
-}
+QuosMusic _$QuosMusicFromJson(Map<String, dynamic> json) => QuosMusic(
+      title: json['title'] as String?,
+      artist: json['artist'] as String?,
+      album: json['album'] as String?,
+      genre: json['genre'] as String?,
+      artwork: json['artwork'] as String?,
+      trackNumber: json['track_number'] as int?,
+      trackTotal: json['track_total'] as int?,
+      discNumber: json['disc_number'] as int?,
+      discTotal: json['disc_total'] as int?,
+      lyrics: json['lyrics'] as String?,
+      albumArtist: json['album_artist'] as String?,
+      year: json['year'] as int?,
+      createdAt: json['created_at'] == null
+          ? null
+          : DateTime.parse(json['created_at'] as String),
+      updatedAt: json['updated_at'] == null
+          ? null
+          : DateTime.parse(json['updated_at'] as String),
+      fileName: json['file_name'] as String?,
+      filePath: json['file_path'] as String?,
+      fileFormat: json['file_format'] as String?,
+      fileSize: json['file_size'] as int?,
+      fileLastModified: json['file_last_modified'] == null
+          ? null
+          : DateTime.parse(json['file_last_modified'] as String),
+    );
 
 Map<String, dynamic> _$QuosMusicToJson(QuosMusic instance) => <String, dynamic>{
       'title': instance.title,

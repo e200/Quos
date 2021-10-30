@@ -6,7 +6,7 @@ import 'package:quos/modules/player/state.dart';
 import 'package:quos/modules/playlist/model.dart';
 
 final playerControllerProvider =
-    StateNotifierProvider.autoDispose<PlayerController>((ref) {
+    StateNotifierProvider.autoDispose<PlayerController, QuosPlayerState>((ref) {
   return PlayerController(audioPlayer: AudioPlayer());
 });
 

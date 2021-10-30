@@ -49,17 +49,17 @@ class LibraryManager {
         final _tags = await _tagger.readTags(path: _supportedFile.path);
 
         final _quosMusic = QuosMusic(
-          title: _tags.title,
+          title: _tags!.title,
           artist: _tags.artist,
           album: _tags.album,
           albumArtist: _tags.albumArtist,
           genre: _tags.genre,
-          trackNumber: int.tryParse(_tags.trackNumber),
-          trackTotal: int.tryParse(_tags.trackTotal),
-          discNumber: int.tryParse(_tags.discNumber),
-          discTotal: int.tryParse(_tags.discTotal),
+          trackNumber: int.tryParse(_tags.trackNumber ?? ''),
+          trackTotal: int.tryParse(_tags.trackTotal ?? ''),
+          discNumber: int.tryParse(_tags.discNumber ?? ''),
+          discTotal: int.tryParse(_tags.discTotal ?? ''),
           lyrics: _tags.lyrics,
-          year: int.tryParse(_tags.year),
+          year: int.tryParse(_tags.year ?? ''),
           artwork: _tags.artwork,
           fileName: path.basename(_filePath),
           fileFormat: path.extension(_filePath),
@@ -80,7 +80,8 @@ class LibraryManager {
   List<FileSystemEntity> _extractSupportedFiles(List<FileSystemEntity> _files) {
     return _files
         .where(
-            (element) => _isFileSupported(element.path, _supportedFileFormats))
+          (element) => _isFileSupported(element.path, _supportedFileFormats),
+        )
         .toList();
   }
 
@@ -122,7 +123,8 @@ final libraryUpdaterProvider = Provider<LibraryManager>((ref) {
 });
 
 final libraryUpdateStateNotifierProvider =
-    StateNotifierProvider<LibraryUpdateStateNotifier>((ref) {
+    StateNotifierProvider<LibraryUpdateStateNotifier, LibraryUpdateState>(
+        (ref) {
   return LibraryUpdateStateNotifier(
     libraryManager: ref.watch(libraryUpdaterProvider),
   );

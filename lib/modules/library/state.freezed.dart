@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'state.dart';
 
@@ -57,6 +58,15 @@ mixin _$LibraryUpdateState {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? checkingUpdates,
+    TResult Function(int total, int index, QuosMusic music)? updating,
+    TResult Function()? updated,
+    TResult Function()? deleting,
+    TResult Function()? error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? checkingUpdates,
     TResult Function(int total, int index, QuosMusic music)? updating,
@@ -73,6 +83,15 @@ mixin _$LibraryUpdateState {
     required TResult Function(_Updated value) updated,
     required TResult Function(_Deleting value) deleting,
     required TResult Function(_Error value) error,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_CheckingUpdates value)? checkingUpdates,
+    TResult Function(_Updating value)? updating,
+    TResult Function(_Updated value)? updated,
+    TResult Function(_Deleting value)? deleting,
+    TResult Function(_Error value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -124,6 +143,7 @@ class __$CheckingUpdatesCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_CheckingUpdates implements _CheckingUpdates {
   const _$_CheckingUpdates();
 
@@ -154,6 +174,18 @@ class _$_CheckingUpdates implements _CheckingUpdates {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? checkingUpdates,
+    TResult Function(int total, int index, QuosMusic music)? updating,
+    TResult Function()? updated,
+    TResult Function()? deleting,
+    TResult Function()? error,
+  }) {
+    return checkingUpdates?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? checkingUpdates,
     TResult Function(int total, int index, QuosMusic music)? updating,
@@ -178,6 +210,18 @@ class _$_CheckingUpdates implements _CheckingUpdates {
     required TResult Function(_Error value) error,
   }) {
     return checkingUpdates(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_CheckingUpdates value)? checkingUpdates,
+    TResult Function(_Updating value)? updating,
+    TResult Function(_Updated value)? updated,
+    TResult Function(_Deleting value)? deleting,
+    TResult Function(_Error value)? error,
+  }) {
+    return checkingUpdates?.call(this);
   }
 
   @override
@@ -242,6 +286,7 @@ class __$UpdatingCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_Updating implements _Updating {
   const _$_Updating(
       {required this.total, required this.index, required this.music});
@@ -296,6 +341,18 @@ class _$_Updating implements _Updating {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? checkingUpdates,
+    TResult Function(int total, int index, QuosMusic music)? updating,
+    TResult Function()? updated,
+    TResult Function()? deleting,
+    TResult Function()? error,
+  }) {
+    return updating?.call(total, index, music);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? checkingUpdates,
     TResult Function(int total, int index, QuosMusic music)? updating,
@@ -320,6 +377,18 @@ class _$_Updating implements _Updating {
     required TResult Function(_Error value) error,
   }) {
     return updating(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_CheckingUpdates value)? checkingUpdates,
+    TResult Function(_Updating value)? updating,
+    TResult Function(_Updated value)? updated,
+    TResult Function(_Deleting value)? deleting,
+    TResult Function(_Error value)? error,
+  }) {
+    return updating?.call(this);
   }
 
   @override
@@ -371,6 +440,7 @@ class __$UpdatedCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_Updated implements _Updated {
   const _$_Updated();
 
@@ -401,6 +471,18 @@ class _$_Updated implements _Updated {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? checkingUpdates,
+    TResult Function(int total, int index, QuosMusic music)? updating,
+    TResult Function()? updated,
+    TResult Function()? deleting,
+    TResult Function()? error,
+  }) {
+    return updated?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? checkingUpdates,
     TResult Function(int total, int index, QuosMusic music)? updating,
@@ -425,6 +507,18 @@ class _$_Updated implements _Updated {
     required TResult Function(_Error value) error,
   }) {
     return updated(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_CheckingUpdates value)? checkingUpdates,
+    TResult Function(_Updating value)? updating,
+    TResult Function(_Updated value)? updated,
+    TResult Function(_Deleting value)? deleting,
+    TResult Function(_Error value)? error,
+  }) {
+    return updated?.call(this);
   }
 
   @override
@@ -466,6 +560,7 @@ class __$DeletingCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_Deleting implements _Deleting {
   const _$_Deleting();
 
@@ -496,6 +591,18 @@ class _$_Deleting implements _Deleting {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? checkingUpdates,
+    TResult Function(int total, int index, QuosMusic music)? updating,
+    TResult Function()? updated,
+    TResult Function()? deleting,
+    TResult Function()? error,
+  }) {
+    return deleting?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? checkingUpdates,
     TResult Function(int total, int index, QuosMusic music)? updating,
@@ -520,6 +627,18 @@ class _$_Deleting implements _Deleting {
     required TResult Function(_Error value) error,
   }) {
     return deleting(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_CheckingUpdates value)? checkingUpdates,
+    TResult Function(_Updating value)? updating,
+    TResult Function(_Updated value)? updated,
+    TResult Function(_Deleting value)? deleting,
+    TResult Function(_Error value)? error,
+  }) {
+    return deleting?.call(this);
   }
 
   @override
@@ -560,6 +679,7 @@ class __$ErrorCopyWithImpl<$Res> extends _$LibraryUpdateStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_Error implements _Error {
   const _$_Error();
 
@@ -590,6 +710,18 @@ class _$_Error implements _Error {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? checkingUpdates,
+    TResult Function(int total, int index, QuosMusic music)? updating,
+    TResult Function()? updated,
+    TResult Function()? deleting,
+    TResult Function()? error,
+  }) {
+    return error?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? checkingUpdates,
     TResult Function(int total, int index, QuosMusic music)? updating,
@@ -614,6 +746,18 @@ class _$_Error implements _Error {
     required TResult Function(_Error value) error,
   }) {
     return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_CheckingUpdates value)? checkingUpdates,
+    TResult Function(_Updating value)? updating,
+    TResult Function(_Updated value)? updated,
+    TResult Function(_Deleting value)? deleting,
+    TResult Function(_Error value)? error,
+  }) {
+    return error?.call(this);
   }
 
   @override

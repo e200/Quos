@@ -17,7 +17,7 @@ class QuosNowPlaying extends StatelessWidget {
       tag: heroTag,
       child: Consumer(
         builder: (context, watch, child) {
-          final _state = watch(playerControllerProvider.state);
+          final _state = watch(playerControllerProvider);
 
           return _state.maybeWhen(
             playing: (
@@ -143,13 +143,13 @@ class __PlayButtonState extends State<_PlayButton>
   Widget build(BuildContext context) {
     return Consumer(
       builder: (context, watch, child) {
-        final _state = watch(playerControllerProvider.state);
+        final _state = watch(playerControllerProvider);
 
         return Material(
           color: Colors.transparent,
           child: InkWell(
             onTap: () {
-              context.read(playerControllerProvider).toggle();
+              context.read(playerControllerProvider.notifier).toggle();
 
               if (_animation.isCompleted) {
                 _animationController.reverse();

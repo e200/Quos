@@ -24,6 +24,7 @@ class QuosPlaylistRepository {
     final _jsonPlaylist = await db.query(table);
 
     return List<QuosPlaylist>.from(
-        _jsonPlaylist.map((e) => QuosPlaylist.fromJson(_jsonPlaylist.first)));
+      _jsonPlaylist.map((e) => QuosPlaylist.fromJson(_jsonPlaylist.first)),
+    );
   }
 }

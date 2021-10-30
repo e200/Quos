@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'state.dart';
 
@@ -87,6 +88,18 @@ mixin _$QuosPlayerState {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? none,
+    TResult Function(QuosPlaylist playlist, QuosMusic music, int musicIndex,
+            Duration duration, Duration position, double progress)?
+        playing,
+    TResult Function(QuosPlaylist playlist, QuosMusic music, int musicIndex,
+            Duration duration, Duration position, double progress)?
+        paused,
+    TResult Function()? stopped,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? none,
     TResult Function(QuosPlaylist playlist, QuosMusic music, int musicIndex,
@@ -105,6 +118,14 @@ mixin _$QuosPlayerState {
     required TResult Function(_Playing value) playing,
     required TResult Function(_Paused value) paused,
     required TResult Function(_Stopped value) stopped,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_None value)? none,
+    TResult Function(_Playing value)? playing,
+    TResult Function(_Paused value)? paused,
+    TResult Function(_Stopped value)? stopped,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -152,6 +173,7 @@ class __$NoneCopyWithImpl<$Res> extends _$QuosPlayerStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_None implements _None {
   const _$_None();
 
@@ -195,6 +217,21 @@ class _$_None implements _None {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? none,
+    TResult Function(QuosPlaylist playlist, QuosMusic music, int musicIndex,
+            Duration duration, Duration position, double progress)?
+        playing,
+    TResult Function(QuosPlaylist playlist, QuosMusic music, int musicIndex,
+            Duration duration, Duration position, double progress)?
+        paused,
+    TResult Function()? stopped,
+  }) {
+    return none?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? none,
     TResult Function(QuosPlaylist playlist, QuosMusic music, int musicIndex,
@@ -221,6 +258,17 @@ class _$_None implements _None {
     required TResult Function(_Stopped value) stopped,
   }) {
     return none(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_None value)? none,
+    TResult Function(_Playing value)? playing,
+    TResult Function(_Paused value)? paused,
+    TResult Function(_Stopped value)? stopped,
+  }) {
+    return none?.call(this);
   }
 
   @override
@@ -304,6 +352,7 @@ class __$PlayingCopyWithImpl<$Res> extends _$QuosPlayerStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_Playing implements _Playing {
   const _$_Playing(
       {required this.playlist,
@@ -396,6 +445,22 @@ class _$_Playing implements _Playing {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? none,
+    TResult Function(QuosPlaylist playlist, QuosMusic music, int musicIndex,
+            Duration duration, Duration position, double progress)?
+        playing,
+    TResult Function(QuosPlaylist playlist, QuosMusic music, int musicIndex,
+            Duration duration, Duration position, double progress)?
+        paused,
+    TResult Function()? stopped,
+  }) {
+    return playing?.call(
+        playlist, music, musicIndex, duration, position, progress);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? none,
     TResult Function(QuosPlaylist playlist, QuosMusic music, int musicIndex,
@@ -422,6 +487,17 @@ class _$_Playing implements _Playing {
     required TResult Function(_Stopped value) stopped,
   }) {
     return playing(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_None value)? none,
+    TResult Function(_Playing value)? playing,
+    TResult Function(_Paused value)? paused,
+    TResult Function(_Stopped value)? stopped,
+  }) {
+    return playing?.call(this);
   }
 
   @override
@@ -521,6 +597,7 @@ class __$PausedCopyWithImpl<$Res> extends _$QuosPlayerStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_Paused implements _Paused {
   const _$_Paused(
       {required this.playlist,
@@ -613,6 +690,22 @@ class _$_Paused implements _Paused {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? none,
+    TResult Function(QuosPlaylist playlist, QuosMusic music, int musicIndex,
+            Duration duration, Duration position, double progress)?
+        playing,
+    TResult Function(QuosPlaylist playlist, QuosMusic music, int musicIndex,
+            Duration duration, Duration position, double progress)?
+        paused,
+    TResult Function()? stopped,
+  }) {
+    return paused?.call(
+        playlist, music, musicIndex, duration, position, progress);
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? none,
     TResult Function(QuosPlaylist playlist, QuosMusic music, int musicIndex,
@@ -639,6 +732,17 @@ class _$_Paused implements _Paused {
     required TResult Function(_Stopped value) stopped,
   }) {
     return paused(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_None value)? none,
+    TResult Function(_Playing value)? playing,
+    TResult Function(_Paused value)? paused,
+    TResult Function(_Stopped value)? stopped,
+  }) {
+    return paused?.call(this);
   }
 
   @override
@@ -693,6 +797,7 @@ class __$StoppedCopyWithImpl<$Res> extends _$QuosPlayerStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_Stopped implements _Stopped {
   const _$_Stopped();
 
@@ -736,6 +841,21 @@ class _$_Stopped implements _Stopped {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? none,
+    TResult Function(QuosPlaylist playlist, QuosMusic music, int musicIndex,
+            Duration duration, Duration position, double progress)?
+        playing,
+    TResult Function(QuosPlaylist playlist, QuosMusic music, int musicIndex,
+            Duration duration, Duration position, double progress)?
+        paused,
+    TResult Function()? stopped,
+  }) {
+    return stopped?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? none,
     TResult Function(QuosPlaylist playlist, QuosMusic music, int musicIndex,
@@ -762,6 +882,17 @@ class _$_Stopped implements _Stopped {
     required TResult Function(_Stopped value) stopped,
   }) {
     return stopped(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_None value)? none,
+    TResult Function(_Playing value)? playing,
+    TResult Function(_Paused value)? paused,
+    TResult Function(_Stopped value)? stopped,
+  }) {
+    return stopped?.call(this);
   }
 
   @override

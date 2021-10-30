@@ -43,6 +43,7 @@ class MusicRepository {
     );
 
     return List<QuosMusic>.from(
-        _mostPlayedJsonMusics.map((e) => QuosMusic.fromJson(e)));
+      _mostPlayedJsonMusics.map((e) => QuosMusic.fromJson(e)),
+    );
   }
 }

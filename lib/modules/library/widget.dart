@@ -10,7 +10,7 @@ class QuosLibraryUpdateStatus extends StatelessWidget {
       color: const Color(0xFF282940),
       child: Consumer(
         builder: (context, watch, child) {
-          final _state = watch(libraryUpdateStateNotifierProvider.state);
+          final _state = watch(libraryUpdateStateNotifierProvider);
 
           return _state.maybeWhen(
             checkingUpdates: () => const Padding(

@@ -52,7 +52,7 @@ class DbManager {
   Future<String> _getDatabasePath() async {
     final _dbPath = await getDatabasesPath();
 
-    final _dbFilePath = join(_dbPath!, 'quos.db');
+    final _dbFilePath = join(_dbPath, 'quos.db');
 
     return _dbFilePath;
   }

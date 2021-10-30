@@ -9,7 +9,7 @@ class InitPage extends StatelessWidget {
     return QuosScaffold(
       body: Consumer(
         builder: (context, watch, child) {
-          final _state = watch(initStateNotifierProvider.state);
+          final _state = watch(initStateNotifierProvider);
 
           return _state.maybeWhen(
             error: () {
@@ -20,7 +20,7 @@ class InitPage extends StatelessWidget {
               );
             },
             orElse: () => child!,
-          );
+          ) as Widget;
         },
         child: const Center(
           child: CircularProgressIndicator(),
