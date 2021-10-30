@@ -19,7 +19,7 @@ class _QuosAppState extends State<QuosApp> with WidgetsBindingObserver {
 
     WidgetsBinding.instance!.addObserver(this);
 
-    context.read(initStateNotifierProvider).init();
+    context.read(initStateNotifierProvider.notifier).init();
   }
 
   @override
